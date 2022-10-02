@@ -29,8 +29,10 @@ def testtop1000():
     nodualstack=0
     rows=0
     nodiff=noipv4conn=noipv6conn=0
-    limit = 1000
-    # Iterate over each row in the csv using reader objec
+    limit = 100
+    ip4faster=ip6faster=0
+
+# Iterate over each row in the csv using reader objec
     for row in data:
         if (rows == limit): break
         rows+=1
@@ -56,9 +58,11 @@ def testtop1000():
 
         if (result6 > result): 
             ip4pref+= 1
+            ip4faster += (result6 - result)
             print(f"\033[92m {hostname} is ipv4 faster {(result6 - result)} ")
         elif (result >= result6): 
             ip6pref += 1
+            ip6faster += (result - result6)
             print(f"\033[94m {hostname} is ipv6 faster {(result - result6)} ")
         else:
             nodiff += 1
@@ -68,7 +72,9 @@ def testtop1000():
     print(f"Ipv4 fail {noipv4conn}")
     print(f"Ipv6 fail {noipv6conn}")
     print(f"IPv6 faster: {ip6pref}")
+    print(f"IPv6 faster in time: {ip6faster}")
     print(f"IPv4 faster: {ip4pref}")
+    print(f"IPv4 faster in time: {ip4faster}")
     print(f"No Dualstck: {nodualstack}")
     print(f"No Differ: {nodiff}")
 
