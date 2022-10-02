@@ -1,5 +1,5 @@
+#!/usr/bin/python3
 from csv import reader
-from tcp_latency import measure_latency
 import threading
 import random
 import socket
