@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 from csv import reader
-import threading
 import random
 import socket
 import time
